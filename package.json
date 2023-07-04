@@ -1,0 +1,27 @@
+{
+  "name": "@7polo/editorjs-image2",
+  "description": "@7polo/editorjs-image2 Tool for Editor.js",
+  "version": "0.0.1",
+  "main": "dist/editorjs-image2.umd.js",
+  "module": "dist/editorjs-image2.mjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@codexteam/icons": "^0.1.0",
+    "@editorjs/editorjs": "^2.26.4",
+    "@editorjs/header": "^2.7.0",
+    "@types/node": "^16.3.3",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.3",
+    "ts-loader": "^9.1.0",
+    "typescript": "^4.2.4",
+    "vite": "^3.1.0",
+    "vite-plugin-css-injected-by-js": "^2.1.1"
+  },
+  "dependencies": {
+    "lodash.isequal": "^4.5.0",
+    "viewerjs": "^1.10.2"
+  }
+}

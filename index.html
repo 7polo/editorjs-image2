@@ -1,0 +1,81 @@
+<html>
+<head>
+  <title>Editor.js example page</title>
+
+  <style>
+    body {
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+  </style>
+</head>
+<body>
+  <div id="editorjs"></div>
+
+  <button id="save-button">Save</button>
+  <pre id="output"></pre>
+  <pre id="log"></pre>
+
+  <script type="module">
+    import EditorJS from '@editorjs/editorjs';
+    import ImageTool from './src/index.ts';
+    import isEqual from "lodash.isequal";
+    import Header from '@editorjs/header';
+
+    const changedList = []
+
+    let data = {
+      blocks: [
+        {
+          type: 'image',
+          data: {
+            "url": "http://file.deepy.top/jnote/article/1019/image_0_27.png",
+            "withBorder": false,
+            "stretched": true,
+            "withBackground": true
+          },
+        }
+      ],
+    }
+
+    const editor = new EditorJS({
+      tools: {
+        Header: {
+          class: Header
+        },
+        image: {
+          class: ImageTool,
+          // inlineToolbar: ['marker', 'link'],
+          // shortcut: 'CMD+SHIFT+H',
+          // config: {},
+        }
+      },
+      data,
+      onChange(api, event) {
+        editor.save().then( savedData => {
+          savedData.time = undefined;
+          if (!isEqual(savedData, data)) {
+            console.log('changed')
+            data = savedData;
+
+            output.innerHTML = JSON.stringify(data, null, 4);
+
+            changedList.push('changed')
+            log.innerHTML = changedList.join('\r\n');
+          }
+        })
+      }
+    });
+
+    // const saveButton = document.getElementById('save-button');
+    const output = document.getElementById('output');
+    const log = document.getElementById('log');
+    //
+    // saveButton.addEventListener('click', () => {
+    //   editor.save().then( savedData => {
+    //     output.innerHTML = JSON.stringify(savedData, null, 4);
+    //   })
+    // })
+  </script>
+</body>
+</html>
+

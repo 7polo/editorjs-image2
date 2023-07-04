@@ -1,0 +1,119 @@
+.editorjs-image2 {
+
+  &-input {
+    height: 0;
+  }
+
+  &-empty {
+    margin: 1em auto;
+    height: 40px;
+
+    border-radius: 4px;
+
+    color: rgba(55, 53, 47, 0.6);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    overflow: hidden;
+    background: #f2f1ee;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    caret-color: transparent;
+    user-select: none;
+
+    &_icon {
+      margin-right: 6px;
+      margin-left: 10px;
+    }
+  }
+
+  &-input_holder {
+    display: none;
+  }
+
+  &-tab {
+    width: 650px;
+    height: 200px;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 3px 6px, rgba(15, 15, 15, 0.2) 0 9px 24px;
+    background: white;
+
+    &-nav {
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: lightgray;
+      margin-bottom: 10px;
+      padding: 6px 10px 6px 10px;
+
+      &_item {
+        display: inline-block;
+        cursor: pointer;
+        padding: 8px;
+        font-size: 13px;
+        margin-right: 12px;
+
+        &.active {
+          border-width: 0 0 3px 0;
+          border-style: solid;
+          border-color: #388ae5;
+        }
+      }
+    }
+
+    &-content {
+      padding: 12px;
+      &_item {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &-hidden {
+    display: none;
+  }
+
+  &.inline-image {
+    .inline-image__picture {
+      margin: 0 auto;
+      text-align: center;
+
+      &--withBorder {
+        border: 1px solid #e8e8eb;
+        padding: 1px;
+      }
+
+      &--withBackground{
+        background: #eff2f5;
+        padding: 10px;
+
+        .image__picture__data {
+          max-width: 60%;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .image__picture__data {
+      max-width: 100%;
+    }
+  }
+}
+
+.inline-image__embed-button {
+  width: 50%;
+  background-color: #388ae5;
+  user-select: none;
+  color: white;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
