@@ -44,9 +44,14 @@
         },
         image: {
           class: ImageTool,
+
           // inlineToolbar: ['marker', 'link'],
           // shortcut: 'CMD+SHIFT+H',
-          // config: {},
+          config: {
+            doUpload: (files)=> {
+                return Promise.resolve(['http://file.deepy.top/jnote/article/1019/image_0_27.png'])
+            },
+          },
         }
       },
       data,

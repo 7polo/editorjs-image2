@@ -53,6 +53,8 @@ export default class ImageTool implements BlockTool {
 
   private ui: Ui;
 
+  private context: ImageToolContext;
+
 
   /**
    * Class constructor
@@ -67,21 +69,21 @@ export default class ImageTool implements BlockTool {
     this.readOnly = readOnly;
 
     // context
-    const context:ImageToolContext = {
+   this.context = {
       api: this.api,
       selectImage: (url:string) => {
         this.selectImage({url})
         this.ui.getTabPanel().hide()
       },
-      doUpload: (files: FileList):Promise<String[]>=> {
-        return Promise.resolve([])
+      doUpload: (files: FileList|File[]):Promise<string[]>=> {
+        return this.config?.doUpload(files);
       },
       getData:()=> {
         return this.data;
       }
     }
 
-    this.ui = new Ui(context)
+    this.ui = new Ui(this.context)
   }
 
   /**
@@ -228,7 +230,9 @@ export default class ImageTool implements BlockTool {
         this.selectImage({url: event.detail.data});
         break;
       case 'file':
-        // this.onDropHandler(event.detail.file).then((data) => this.updateImageData(data, true));
+        // @ts-ignore
+        const file = event.detail?.file;
+        this.context.doUpload([file]).then((urls) => urls.forEach(url => this.context.selectImage(url)))
         break;
       default:
         break;
@@ -259,7 +263,7 @@ export default class ImageTool implements BlockTool {
   static get pasteConfig() {
     return {
       patterns: {
-        image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png|webp)$/i,
+        image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png|webp|svg)$/i,
       },
       tags: ['img'],
       files: {

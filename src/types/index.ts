@@ -15,12 +15,14 @@ export interface ImageToolData extends BlockToolData {
 /**
  * editorjs-image2 Tool's configuration object that passed through the initial Editor config
  */
-export interface ImageToolConfig {}
+export interface ImageToolConfig {
+    doUpload:(files: FileList|File[]) => Promise<string[]>
+}
 
 export interface ImageToolContext {
     api: API;
     selectImage: (url:string) => void,
-    doUpload:(files: FileList) => Promise<String[]>
+    doUpload:(files: FileList|File[]) => Promise<string[]>
     getData: ()=> ImageToolData,
 }
 
