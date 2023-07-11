@@ -50,11 +50,9 @@ export default class ImageTool implements BlockTool {
    */
   private config: ImageToolConfig;
 
-
   private ui: Ui;
 
   private context: ImageToolContext;
-
 
   /**
    * Class constructor
@@ -83,7 +81,7 @@ export default class ImageTool implements BlockTool {
       }
     }
 
-    this.ui = new Ui(this.context)
+    this.ui = new Ui(this.context, config)
   }
 
   /**
@@ -194,7 +192,9 @@ export default class ImageTool implements BlockTool {
             this.api.toolbar.close()
             const target = this.ui?.getContainer()
             if (target) {
-              setTimeout(()=> this.ui.getTabPanel().showByElement(target), 100)
+              setTimeout(()=> {
+                this.ui.getTabPanel().showByElement(target)
+              }, 100)
             }
           }
         }

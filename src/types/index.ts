@@ -16,20 +16,27 @@ export interface ImageToolData extends BlockToolData {
  * editorjs-image2 Tool's configuration object that passed through the initial Editor config
  */
 export interface ImageToolConfig {
-    doUpload:(files: FileList|File[]) => Promise<string[]>
+    doUpload:(files: FileList|File[]) => Promise<string[]>,
+    panels?: Panel[]
 }
 
 export interface ImageToolContext {
     api: API;
     selectImage: (url:string) => void,
     doUpload:(files: FileList|File[]) => Promise<string[]>
-    getData: ()=> ImageToolData,
+    getData: ()=> ImageToolData
 }
 
 export interface Panel {
     name:string,
     key: string,
+    type:string,
     render:()=>HTMLElement
 }
+
+export interface GalleryPanelType extends Panel{
+
+}
+
 
 

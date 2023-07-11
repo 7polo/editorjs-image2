@@ -7,6 +7,7 @@
   &-empty {
     margin: 1em auto;
     height: 40px;
+    line-height: 1;
 
     border-radius: 4px;
 
@@ -34,7 +35,7 @@
 
   &-tab {
     width: 650px;
-    height: 200px;
+    min-height: 200px;
     position: fixed;
     z-index: 2;
     display: flex;
@@ -104,16 +105,34 @@
       max-width: 100%;
     }
   }
+
+  &__embed-button {
+    width: 50%;
+    background-color: #388ae5;
+    user-select: none;
+    color: white;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  &-gallery-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4%;
+    row-gap: 10px;
+    margin-top: 10px;
+  }
+
+  &-gallery-item {
+    width: 22%;
+    cursor: pointer;
+  }
+
+  &-gallery-img {
+    width: 100%;
+  }
 }
 
-.inline-image__embed-button {
-  width: 50%;
-  background-color: #388ae5;
-  user-select: none;
-  color: white;
-  text-align: center;
-  margin: 20px auto;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 14px;
-}

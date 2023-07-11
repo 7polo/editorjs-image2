@@ -1,7 +1,8 @@
-import {ImageToolContext, Panel} from "../../types";
+import {ImageToolContext, Panel, PREFIX} from "../../types";
 
 export class UploadPanel implements Panel {
 
+    type='UploadPanel';
     key='UPLOAD-PANEL';
     name = 'UPLOAD';
 
@@ -17,18 +18,8 @@ export class UploadPanel implements Panel {
         input.classList.add('cdx-input')
         input.setAttribute('type', 'file')
 
-        // const embedImageButton = make('div', ['inline-image__embed-button', 'cdx-input'], {
-        //     innerHTML: 'Embed Image',
-        //     onclick: () => {
-        //         const files =  this.nodes.input.files;
-        //         this.config.upload.doUpload(files).then(({url}) => {
-        //             this.onSelectImage({url});
-        //         });
-        //     }
-        // });
-
         const button =  document.createElement('div');
-        button.classList.add('inline-image__embed-button')
+        button.classList.add(`${PREFIX}__embed-button`)
         button.innerText = 'Embed Image'
 
         button.addEventListener('click', (e: MouseEvent) => {

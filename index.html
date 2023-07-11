@@ -30,7 +30,7 @@
           data: {
             "url": "http://file.deepy.top/jnote/article/1019/image_0_27.png",
             "withBorder": false,
-            "stretched": true,
+            "stretched": false,
             "withBackground": true
           },
         }
@@ -51,6 +51,7 @@
             doUpload: (files)=> {
                 return Promise.resolve(['http://file.deepy.top/jnote/article/1019/image_0_27.png'])
             },
+            panels: []
           },
         }
       },

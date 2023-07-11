@@ -1,7 +1,7 @@
 {
   "name": "@7polo/editorjs-image2",
   "description": "@7polo/editorjs-image2 Tool for Editor.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/editorjs-image2.umd.js",
   "module": "dist/editorjs-image2.mjs",
   "scripts": {
@@ -20,8 +20,9 @@
     "vite": "^3.1.0",
     "vite-plugin-css-injected-by-js": "^2.1.1"
   },
-  "dependencies": {
+  "peerDependencies": {
     "lodash.isequal": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
     "viewerjs": "^1.10.2"
   }
 }

@@ -1,6 +1,6 @@
 import "./index.less";
 import {IconPicture} from "@codexteam/icons";
-import {ImageToolContext, PREFIX} from "../types";
+import {ImageToolConfig, ImageToolContext, PREFIX} from "../types";
 import {TabPanel} from "./tab";
 import Viewer from 'viewerjs';
 import 'viewerjs/dist/viewer.css'
@@ -18,9 +18,11 @@ export class Ui {
     private readonly tabPanel : TabPanel;
 
     private context : ImageToolContext;
+    private config : ImageToolConfig;
 
-    constructor(context:ImageToolContext) {
+    constructor(context:ImageToolContext, config: ImageToolConfig) {
         this.context = context;
+        this.config = config;
 
         this.nodes = {
             wrapper: null,
@@ -30,7 +32,7 @@ export class Ui {
             imageView: null,
         };
 
-        this.tabPanel = new TabPanel(context);
+        this.tabPanel = new TabPanel(context, config);
     }
 
     public getContainer() {
