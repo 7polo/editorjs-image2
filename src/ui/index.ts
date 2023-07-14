@@ -8,6 +8,10 @@ import ErrorImage from './error_img.svg';
 
 let globalLock = false;
 let globalErrorListenerFlag = false;
+
+const STYLES = {
+    IMAGE: 'image__picture__data'
+}
 export class Ui {
 
     /**
@@ -42,7 +46,7 @@ export class Ui {
     render() {
         if (!this.nodes.wrapper) {
             this.nodes.wrapper = document.createElement('div');
-            this.nodes.wrapper.classList.add(`${PREFIX}`, 'cdx-block', 'inline-image')
+            this.nodes.wrapper.classList.add(`${PREFIX}`, this.context.api.styles.block, 'inline-image')
 
             const input = document.createElement('div');
             input.setAttribute('contenteditable', "true");
@@ -149,7 +153,7 @@ export class Ui {
         imageHolder.dataset.mutationFree = 'true'
 
         const imageView = document.createElement('img');
-        imageView.classList.add('image__picture__data')
+        imageView.classList.add(STYLES.IMAGE)
         imageView.setAttribute("src", this.context.getData().url)
         imageView.dataset.mutationFree = 'true'
 
@@ -161,7 +165,7 @@ export class Ui {
                 let target = (e.target as HTMLElement)
                 const tagName = target.tagName || ''
                 // @ts-ignore
-                if (tagName.toLowerCase() === 'img' && target?.src?.length > 0) {
+                if (tagName.toLowerCase() === 'img' && target?.src?.length > 0 && target.classList.contains(STYLES.IMAGE)) {
                     // @ts-ignore
                     target.src = ErrorImage
                     target.dataset.state = "false"
@@ -174,31 +178,36 @@ export class Ui {
     }
 
     private preview() {
-        if (this.nodes.imageHolder && this.context.getData().url) {
-            const viewer = new Viewer(this.nodes.imageHolder, {
-                inline: false,
-                navbar: false,
-                title: false,
-                container: document.body,
-                toolbar: {
-                    zoomIn: 4,
-                    zoomOut: 4,
-                    oneToOne: 4,
-                    reset: 4,
-                    play: {
-                        show: 4,
-                        size: 'large',
-                    },
-                    rotateLeft: 4,
-                    rotateRight: 4,
-                    flipHorizontal: 4,
-                    flipVertical: 4,
-                },
-                hidden() {
-                    viewer.destroy();
-                }
-            });
-            viewer.show();
+        if (!this.nodes.imageHolder || !this.context.getData().url) {
+            return;
         }
+        const imageEl = this.nodes.imageHolder.querySelector(`.${STYLES.IMAGE}`)
+        if (!imageEl || (imageEl as HTMLElement).dataset.state == 'false') {
+            return;
+        }
+        const viewer = new Viewer(this.nodes.imageHolder, {
+            inline: false,
+            navbar: false,
+            title: false,
+            container: document.body,
+            toolbar: {
+                zoomIn: 4,
+                zoomOut: 4,
+                oneToOne: 4,
+                reset: 4,
+                play: {
+                    show: 4,
+                    size: 'large',
+                },
+                rotateLeft: 4,
+                rotateRight: 4,
+                flipHorizontal: 4,
+                flipVertical: 4,
+            },
+            hidden() {
+                viewer.destroy();
+            }
+        });
+        viewer.show();
     }
 }
