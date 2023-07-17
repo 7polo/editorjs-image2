@@ -220,6 +220,10 @@ export default class ImageTool implements BlockTool {
    * @returns {void}
    */
   onPaste(event:PasteEvent) {
+    event.stopPropagation()
+    event.preventDefault()
+    event.returnValue = false
+
     switch (event.type) {
       case 'tag':
         // @ts-ignore
@@ -291,7 +295,7 @@ export default class ImageTool implements BlockTool {
    */
   static get toolbox() {
     return {
-      title: 'image',
+      title: 'Image',
       icon: IconPicture,
     };
   }

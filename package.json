@@ -1,7 +1,7 @@
 {
   "name": "@7polo/editorjs-image2",
   "description": "@7polo/editorjs-image2 Tool for Editor.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/editorjs-image2.umd.js",
   "module": "dist/editorjs-image2.mjs",
   "scripts": {
