@@ -74,15 +74,14 @@
       }
     });
 
-    // const saveButton = document.getElementById('save-button');
     const output = document.getElementById('output');
     const log = document.getElementById('log');
-    //
-    // saveButton.addEventListener('click', () => {
-    //   editor.save().then( savedData => {
-    //     output.innerHTML = JSON.stringify(savedData, null, 4);
-    //   })
-    // })
+
+
+    const saveButton = document.getElementById('save-button');
+    saveButton.addEventListener('click', () => {
+      editor.readOnly.toggle();
+    })
   </script>
 </body>
 </html>

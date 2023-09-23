@@ -16,6 +16,8 @@ import {ImageToolData, ImageToolConfig, ImageToolContext} from './types';
 import {API, BlockAPI, BlockTool, PasteEvent} from '@editorjs/editorjs';
 import {Ui} from "./ui";
 import {PopoverItem} from "@editorjs/editorjs/types/configs/popover";
+import * as util from "util";
+import {DomUtils} from "./utils";
 
 /**
  * editorjs-image2 Tool for Editor.js
@@ -236,7 +238,10 @@ export default class ImageTool implements BlockTool {
       case 'file':
         // @ts-ignore
         const file = event.detail?.file;
-        this.context.doUpload([file]).then((urls) => urls.forEach(url => this.context.selectImage(url)))
+        this.context.doUpload([file]).then((urls) => {
+          urls.filter(url => DomUtils.isUrl(url))
+              .forEach(url => this.context.selectImage(url))
+        })
         break;
       default:
         break;

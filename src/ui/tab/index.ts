@@ -138,7 +138,6 @@ export class TabPanel {
     }
 
     destroy() {
-        console.log('destroy')
         this.eventIds.forEach(eventId => this.context.api.listeners.offById(eventId))
         this.nodes.wrapper?.remove()
         this.tabs = []

@@ -154,7 +154,9 @@ export class Ui {
 
         const imageView = document.createElement('img');
         imageView.classList.add(STYLES.IMAGE)
-        imageView.setAttribute("src", this.context.getData().url)
+        if (this.context.getData().url) {
+            imageView.setAttribute("src", this.context.getData().url)
+        }
         imageView.dataset.mutationFree = 'true'
 
         imageHolder.append(imageView)

@@ -1,12 +1,13 @@
 {
   "name": "@7polo/editorjs-image2",
   "description": "@7polo/editorjs-image2 Tool for Editor.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/editorjs-image2.umd.js",
   "module": "dist/editorjs-image2.mjs",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "link": "npm link"
   },
   "devDependencies": {
     "@codexteam/icons": "^0.1.0",
